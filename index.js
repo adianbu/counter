@@ -2,26 +2,56 @@ var h = document.querySelector('h2');
 var inc = document.querySelector('.increase');
 var dec = document.querySelector('.decrease');
 var res = document.querySelector('.reset');
+var s = -1;
 
 function increase(){
-    h2=h2+1;
+s=0;
+    console.log("clicked increase");
+    setInterval(()=>
+    {
+      if(s== 0)
+      {
+        //if only code below is executed : one click will add 1 to the current value 
+        var value = parseInt(document.getElementById('number').value, 10);
+        value = isNaN(value) ? 0 : value;
+        value++;
+        document.getElementById('number').value = value;
+        document.getElementById('number').textContent = value;
+      }
+
+    },1000);
+    
 }
 
 function decrease(){
-    h2=h2-1;
+    s=1;
+    setInterval(()=>
+    {
+      if(s == 1)
+      {
+        var value = parseInt(document.getElementById('number').value, 10);
+        value = isNaN(value) ? 0 : value;
+        value--;
+        document.getElementById('number').value = value;
+        document.getElementById('number').textContent = value;
+      }
+
+    },1000);
+
 }
 
+
 function reset(){
-    console.log('clicked');
-
-    var numberTxt = document.getElementById("number").value;
-    var number = parseInt(numberTxt,10);
+    s=-1;
+    console.log('reset clicked');
+    document.getElementById('number').value = 0;
+    document.getElementById('number').textContent = 0;
     
-
-    document.querySelector('h2').style.background = 'white';
-    h.textContent = number;
 }
 
 res.addEventListener('click' , reset);
+inc.addEventListener('click',increase);
+dec.addEventListener('click',decrease);
+
 
 
